@@ -1,17 +1,14 @@
-
 import React from 'react';
 import { Github, Linkedin, Mail } from 'lucide-react';
-
 const Footer = () => {
-  return (
-    <footer className="bg-portfolio-black border-t border-portfolio-blue/20 py-8">
+  return <footer className="bg-portfolio-black border-t border-portfolio-blue/20 py-8">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
             <h3 className="text-xl font-bold">
               <span className="text-portfolio-light-blue">P</span>avan <span className="text-portfolio-blue">K</span>umar
             </h3>
-            <p className="text-gray-400 mt-1">Full Stack Developer & Deep Learning Enthusiast</p>
+            <p className="text-gray-400 mt-1">Computer Science Engineering student skilled in full-stack development and deep learning, with hands-on experience in React, Python, and CNN-based emotion recognition systems. Completed impactful projects and internships, with certifications in Java and Oracle Cloud.</p>
           </div>
           
           <div className="flex space-x-4 items-center">
@@ -31,8 +28,6 @@ const Footer = () => {
           <p>© {new Date().getFullYear()} Peddapalli Laxmi Pavan Kumar. All rights reserved.</p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
