@@ -1,9 +1,8 @@
-
 import React from 'react';
 import SkillBar from '../components/SkillBar';
 import Cube3D from '../components/Cube3D';
 import { Card, CardContent } from '@/components/ui/card';
-import { Html, Css, FileCode, Database, Github } from 'lucide-react';
+import { FileCode, Database, Github } from 'lucide-react';
 
 const SkillsPage = () => {
   const technicalSkills = [
@@ -20,10 +19,10 @@ const SkillsPage = () => {
   ];
 
   const skillIcons = [
-    { icon: Html, name: "HTML", className: "text-orange-500" },
-    { icon: Css, name: "CSS", className: "text-blue-500" },
+    { icon: FileCode, name: "HTML", className: "text-orange-500" },
+    { icon: FileCode, name: "CSS", className: "text-blue-500" },
     { icon: FileCode, name: "JavaScript", className: "text-yellow-400" },
-    { icon: React, name: "React", className: "text-blue-400" },
+    { icon: FileCode, name: "React", className: "text-blue-400" },
     { icon: FileCode, name: "Node.js", className: "text-green-500" },
     { icon: Database, name: "MySQL", className: "text-blue-600" },
     { icon: Database, name: "Oracle", className: "text-red-500" },
