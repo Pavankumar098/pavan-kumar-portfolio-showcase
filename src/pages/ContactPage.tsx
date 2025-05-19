@@ -1,40 +1,65 @@
-import React, { useState } from 'react';
+
+import React, { useState, useRef } from 'react';
 import Cube3D from '../components/Cube3D';
 import { Github, Linkedin, Mail } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import emailjs from '@emailjs/browser';
+
 const ContactPage = () => {
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
+  const formRef = useRef<HTMLFormElement>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const {
-      name,
-      value
-    } = e.target;
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
   };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, you'd send this data to an API
-    console.log('Form submitted:', formData);
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for reaching out. I'll get back to you soon."
-    });
-    setFormData({
-      name: '',
-      email: '',
-      message: ''
+    setIsSubmitting(true);
+    
+    emailjs.sendForm(
+      'service_jwgvr6ao2n', 
+      'template_4nn1', 
+      formRef.current!, 
+      'CLmDVcnPZHh11kagl'
+    )
+    .then((result) => {
+      console.log('Email successfully sent!', result.text);
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for reaching out. I'll get back to you soon."
+      });
+      
+      // Reset form after successful submission
+      setFormData({
+        name: '',
+        email: '',
+        message: ''
+      });
+      setIsSubmitting(false);
+    })
+    .catch((error) => {
+      console.error('Failed to send email:', error.text);
+      toast({
+        title: "Message Failed to Send",
+        description: "There was an error sending your message. Please try again.",
+        variant: "destructive"
+      });
+      setIsSubmitting(false);
     });
   };
+
   return <div className="min-h-screen pt-20 pb-16">
       <div className="container mx-auto px-4">
         <div className="relative">
@@ -93,24 +118,52 @@ const ContactPage = () => {
             <div className="md:col-span-7 project-card">
               <h2 className="text-2xl font-bold mb-6 text-portfolio-light-blue">Send Me a Message</h2>
               
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="text-gray-300 block mb-1">Name</label>
-                  <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} className="w-full px-4 py-2 rounded-md bg-gray-800 border border-gray-700 focus:border-portfolio-light-blue focus:outline-none" required />
+                  <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    value={formData.name} 
+                    onChange={handleChange} 
+                    className="w-full px-4 py-2 rounded-md bg-gray-800 border border-gray-700 focus:border-portfolio-light-blue focus:outline-none" 
+                    required 
+                  />
                 </div>
                 
                 <div>
                   <label htmlFor="email" className="text-gray-300 block mb-1">Email</label>
-                  <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className="w-full px-4 py-2 rounded-md bg-gray-800 border border-gray-700 focus:border-portfolio-light-blue focus:outline-none" required />
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    value={formData.email} 
+                    onChange={handleChange} 
+                    className="w-full px-4 py-2 rounded-md bg-gray-800 border border-gray-700 focus:border-portfolio-light-blue focus:outline-none" 
+                    required 
+                  />
                 </div>
                 
                 <div>
                   <label htmlFor="message" className="text-gray-300 block mb-1">Message</label>
-                  <textarea id="message" name="message" value={formData.message} onChange={handleChange} rows={5} className="w-full px-4 py-2 rounded-md bg-gray-800 border border-gray-700 focus:border-portfolio-light-blue focus:outline-none" required></textarea>
+                  <textarea 
+                    id="message" 
+                    name="message" 
+                    value={formData.message} 
+                    onChange={handleChange} 
+                    rows={5} 
+                    className="w-full px-4 py-2 rounded-md bg-gray-800 border border-gray-700 focus:border-portfolio-light-blue focus:outline-none" 
+                    required
+                  ></textarea>
                 </div>
                 
-                <button type="submit" className="bg-portfolio-blue hover:bg-portfolio-light-blue text-white px-6 py-3 rounded-md transition-colors duration-300">
-                  Send Message
+                <button 
+                  type="submit" 
+                  className="bg-portfolio-blue hover:bg-portfolio-light-blue text-white px-6 py-3 rounded-md transition-colors duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
             </div>
@@ -119,4 +172,5 @@ const ContactPage = () => {
       </div>
     </div>;
 };
+
 export default ContactPage;
