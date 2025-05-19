@@ -1,12 +1,9 @@
-
 import React from 'react';
 import Cube3D from '../components/Cube3D';
 import { ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
 const HomePage = () => {
-  return (
-    <div className="min-h-screen flex flex-col">
+  return <div className="min-h-screen flex flex-col">
       {/* Hero Section */}
       <section className="flex-1 flex flex-col md:flex-row items-center justify-center px-4 relative overflow-hidden">
         {/* Background Elements */}
@@ -24,20 +21,12 @@ const HomePage = () => {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
               I'm <span className="text-portfolio-light-blue">Pavan Kumar</span>
             </h1>
-            <p className="text-xl text-gray-300 mb-6">
-              A full-stack developer based in Telangana.
-            </p>
+            <p className="text-xl text-gray-300 mb-6">A Full Stack Developer and the AI and ML Enthusiast</p>
             <div className="flex space-x-4 justify-center md:justify-start">
-              <Link 
-                to="/portfolio" 
-                className="bg-portfolio-blue hover:bg-portfolio-light-blue text-white px-6 py-2 rounded-md transition-colors duration-300"
-              >
+              <Link to="/portfolio" className="bg-portfolio-blue hover:bg-portfolio-light-blue text-white px-6 py-2 rounded-md transition-colors duration-300">
                 View Work
               </Link>
-              <Link 
-                to="/contact" 
-                className="border border-portfolio-blue text-white hover:bg-portfolio-blue/20 px-6 py-2 rounded-md transition-colors duration-300"
-              >
+              <Link to="/contact" className="border border-portfolio-blue text-white hover:bg-portfolio-blue/20 px-6 py-2 rounded-md transition-colors duration-300">
                 Contact Me
               </Link>
             </div>
@@ -48,21 +37,14 @@ const HomePage = () => {
               <div className="absolute inset-0 bg-portfolio-blue rounded-full opacity-20 blur-2xl"></div>
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-56 h-56 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-portfolio-light-blue/30">
-                  <img 
-                    src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800" 
-                    alt="Placeholder - Add professional headshot of Pavan Kumar" 
-                    className="w-full h-full object-cover"
-                  />
+                  <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800" alt="Placeholder - Add professional headshot of Pavan Kumar" className="w-full h-full object-cover" />
                 </div>
               </div>
             </div>
           </div>
         </div>
         
-        <a 
-          href="#skills-preview" 
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-portfolio-light-blue animate-bounce"
-        >
+        <a href="#skills-preview" className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-portfolio-light-blue animate-bounce">
           <ChevronDown size={32} />
         </a>
       </section>
@@ -102,17 +84,12 @@ const HomePage = () => {
             </div>
           </div>
           <div className="text-center mt-10">
-            <Link 
-              to="/skills" 
-              className="text-portfolio-light-blue hover:underline"
-            >
+            <Link to="/skills" className="text-portfolio-light-blue hover:underline">
               See all my skills →
             </Link>
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default HomePage;
