@@ -1,24 +1,23 @@
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Cube3D from '../components/Cube3D';
 
 const NotFound = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    console.error(
-      "404 Error: User attempted to access non-existent route:",
-      location.pathname
-    );
-  }, [location.pathname]);
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="min-h-screen flex items-center justify-center px-4">
+      <Cube3D className="absolute top-20 right-20 opacity-30" />
+      <Cube3D className="absolute bottom-20 left-20 opacity-20" />
+      
       <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">404</h1>
-        <p className="text-xl text-gray-600 mb-4">Oops! Page not found</p>
-        <a href="/" className="text-blue-500 hover:text-blue-700 underline">
+        <h1 className="text-9xl font-bold text-portfolio-blue">404</h1>
+        <p className="text-2xl text-gray-300 mb-8">Oops! Page not found</p>
+        <Link 
+          to="/" 
+          className="bg-portfolio-blue hover:bg-portfolio-light-blue text-white px-6 py-2 rounded-md transition-colors duration-300"
+        >
           Return to Home
-        </a>
+        </Link>
       </div>
     </div>
   );
