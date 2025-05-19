@@ -19,7 +19,7 @@ const HomePage = () => {
               Hello
             </p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              I'm <span className="text-portfolio-light-blue">Peddapalli Laxmi Pavan Kumar</span>
+              I'm <span className="text-portfolio-light-blue text-right text-3xl mx-0 px-0 font-semibold">Peddapalli Laxmi Pavan Kumar</span>
             </h1>
             <p className="text-xl text-gray-300 mb-6">A Full Stack Developer and the AI and ML Enthusiast</p>
             <div className="flex space-x-4 justify-center md:justify-start">
